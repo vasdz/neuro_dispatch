@@ -1,0 +1,10 @@
+# Notebooks Directory
+
+Jupyter notebooks for exploratory data analysis and ML prototyping.
+
+## Contents
+
+- `01_eda_orders.ipynb` - Order data exploration
+- `02_demand_forecasting.ipynb` - Demand prediction experiments
+- `03_dispatch_simulation.ipynb` - Dispatch algorithm testing
+

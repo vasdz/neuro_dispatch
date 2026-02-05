@@ -1,0 +1,25 @@
+# Data Directory
+
+This directory is for storing datasets managed by DVC.
+
+## Structure
+
+```
+data/
+├── raw/          # Original, immutable data
+├── processed/    # Cleaned, transformed data
+└── features/     # Feature-engineered datasets for ML
+```
+
+## Usage
+
+Data files are tracked with DVC and stored externally (S3/GCS).
+
+```bash
+# Pull data
+dvc pull
+
+# Add new data
+dvc add data/raw/orders_2024.csv
+```
+
