@@ -47,7 +47,7 @@ class OrderEvent(Base):
     )
     event_type: Mapped[str] = mapped_column(String(50), nullable=False)
     h3_index: Mapped[str | None] = mapped_column(String(15), nullable=True)
-    event_metadata: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    event_data: Mapped[dict | None] = mapped_column(JSON, nullable=True)
 
     def __repr__(self) -> str:
         return f"<OrderEvent(order_id={self.order_id}, type={self.event_type})>"

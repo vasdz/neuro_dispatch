@@ -49,6 +49,7 @@ services:
     volumes:
       - ./src:/app/src
       - ./main.py:/app/main.py
+      - ./data:/app/data
     depends_on:
       postgres:
         condition: service_healthy
@@ -57,10 +58,54 @@ services:
     networks:
       - neuro_network
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    labels:
+      - "prometheus.scrape=true"
+      - "prometheus.port=8000"
+      - "prometheus.path=/metrics"
+
+  prometheus:
+    image: prom/prometheus:v2.48.0
+    container_name: neuro_dispatch_prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./infra/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=15d'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    networks:
+      - neuro_network
+    depends_on:
+      - api
+
+  grafana:
+    image: grafana/grafana:10.2.0
+    container_name: neuro_dispatch_grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./infra/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./infra/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    networks:
+      - neuro_network
+    depends_on:
+      - prometheus
 
 volumes:
   postgres_data:
   redis_data:
+  prometheus_data:
+  grafana_data:
 
 networks:
   neuro_network:
