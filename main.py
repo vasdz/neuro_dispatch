@@ -186,11 +186,13 @@ from src.dispatch_engine.api import router as dispatch_router
 from src.demand_forecast.api import router as forecast_router
 from src.pricing_service.api import router as pricing_router
 from src.feature_store.api import router as feature_store_router
+from src.eta_service.api import router as eta_router
 
 app.include_router(dispatch_router, prefix="/api/v1/dispatch", tags=["dispatch"])
 app.include_router(forecast_router, prefix="/api/v1/forecast", tags=["forecast"])
 app.include_router(pricing_router, prefix="/api/v1/pricing", tags=["pricing"])
 app.include_router(feature_store_router, prefix="/api/v1/features", tags=["feature_store"])
+app.include_router(eta_router, prefix="/api/v1/eta", tags=["eta"])
 
 
 if __name__ == "__main__":

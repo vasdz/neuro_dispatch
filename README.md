@@ -94,6 +94,17 @@ We have successfully completed **Phase 5: MLOps & Production Grade**:
 - ✅ **Production Config**: Environment-based settings with MLOps parameters
 - ✅ 50+ comprehensive MLOps tests with 100% pass rate
 
+#### ETA Service (Chronos) ✅
+- ✅ **Routing Engine**: Haversine distance + road factor simulation (OSRM/GraphHopper ready)
+- ✅ **Traffic Modeling**: Rush hour, night, weekend adjustments
+- ✅ **ML Correction**: Rule-based and Gradient Boosting correctors with fallback
+- ✅ **Multi-phase Breakdown**: Courier→Restaurant, Preparation, Restaurant→Customer
+- ✅ **Confidence Intervals**: Lower/upper bounds for delivery time
+- ✅ **Transport Types**: Foot, Bike, Car, Scooter with realistic speeds
+- ✅ **Weather & Queue Adjustments**: Dynamic ETA based on conditions
+- ✅ **Batch API**: Efficient multi-route calculations
+- ✅ 45+ comprehensive ETA tests with 100% pass rate
+
 ### 🏗️ Architecture
 
 Modular monolith architecture with microservices-ready design:
@@ -119,7 +130,7 @@ Modular monolith architecture with microservices-ready design:
 | **Security Module** | Authentication, authorization, rate limiting, audit | ✅ Complete |
 | **Feature Store** | Centralized feature management for ML models | ✅ Complete |
 | **MLOps Pipeline** | Model training, versioning, and deployment automation | ✅ Complete |
-| **ETA Service** | Delivery time estimation with ML correction | 📋 Planned |
+| **ETA Service** | Delivery time estimation with ML correction | ✅ Complete |
 
 ### 🛠️ Technology Stack
 
